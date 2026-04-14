@@ -7,13 +7,13 @@ import { useQueryStates, parseAsBoolean, parseAsString } from "nuqs";
 import { Sparkles, X, ArrowUp } from "lucide-react";
 import { Streamdown } from "streamdown";
 import "streamdown/styles.css";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
 const SUGGESTED_MESSAGES = ["Monte meu plano de treino"];
 
@@ -45,6 +45,7 @@ export function Chat({ embedded = false, initialMessage }: ChatProps) {
     resolver: zodResolver(chatFormSchema),
     defaultValues: { message: "" },
   });
+  const message = useWatch({ control: form.control, name: "message" });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const initialMessageSentRef = useRef(false);
@@ -225,7 +226,7 @@ export function Chat({ embedded = false, initialMessage }: ChatProps) {
             />
             <Button
               type="submit"
-              disabled={!form.watch("message").trim() || isLoading}
+              disabled={!message?.trim() || isLoading}
               size="icon"
               className="size-[42px] shrink-0 rounded-full"
             >
@@ -240,7 +241,7 @@ export function Chat({ embedded = false, initialMessage }: ChatProps) {
   if (embedded) return chatContent;
 
   return (
-    <div className="fixed inset-0 z-[60]">
+    <div className="fixed inset-0 z-60">
       <div
         className="absolute inset-0 bg-foreground/30"
         onClick={handleClose}

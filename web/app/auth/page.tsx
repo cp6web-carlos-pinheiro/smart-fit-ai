@@ -2,7 +2,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { authClient } from "@/app/_lib/auth-client";
 import { headers } from "next/headers";
-import { SignInWithGoogle } from "../../../app/auth/_components/sign-in-with-google";
+import { SignInWithGoogle } from "./_components/sign-in-with-google";
 
 export default async function AuthPage() {
   const session = await authClient.getSession({

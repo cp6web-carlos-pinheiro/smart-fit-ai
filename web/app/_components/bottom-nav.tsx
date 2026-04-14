@@ -8,7 +8,7 @@ import {
 import dayjs from "dayjs";
 import { cn } from "@/lib/utils";
 import { ChatOpenButton } from "@/app/_components/chat-open-button";
-import { getHomeData } from "../../../app/_lib/api/fetch-generated";
+import { getHomeData } from "../_lib/api/fetch-generated";
 
 interface BottomNavProps {
   activePage?: "home" | "calendar" | "stats" | "profile";

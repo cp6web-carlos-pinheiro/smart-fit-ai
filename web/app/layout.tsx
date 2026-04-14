@@ -27,7 +27,7 @@ const anton = Anton({
 });
 
 export const metadata: Metadata = {
-  title: "SMARTER.AI.FIT",
+  title: "SMART.AI.FIT",
   description: "O app que vai transformar a forma como você treina.",
 };
 
